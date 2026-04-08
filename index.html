@@ -608,7 +608,74 @@ footer p { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 8px; }
   .about-visual { display: none; }
   .form-row { grid-template-columns: 1fr; }
   .struk-btns { grid-template-columns: 1fr; }
+    
 }
+
+/* ── DEVELOPER NEON STYLE ── */
+/* ── NEON FLICKER CYBERPUNK ── */
+.dev-text {
+  margin-top: 12px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.5px;
+}
+
+/* LINK NEON */
+.dev-text a {
+  color: #00ffe1;
+  text-decoration: none;
+  font-weight: 700;
+  position: relative;
+
+  text-shadow:
+    0 0 5px #00ffe1,
+    0 0 10px #00ffe1,
+    0 0 20px #00c9a7,
+    0 0 40px #00c9a7;
+
+  animation: flickerNeon 2s infinite;
+}
+
+/* garis bawah neon */
+.dev-text a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: #00ffe1;
+
+  box-shadow:
+    0 0 5px #00ffe1,
+    0 0 10px #00ffe1;
+}
+
+/* 🔥 ANIMASI FLICKER REALISTIS */
+@keyframes flickerNeon {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px #00ffe1,
+      0 0 10px #00ffe1,
+      0 0 20px #00c9a7,
+      0 0 40px #00c9a7;
+  }
+
+  20%, 24%, 55% {
+    opacity: 0.2;
+    text-shadow: none;
+  }
+
+  21%, 23%, 56% {
+    opacity: 0.6;
+    text-shadow:
+      0 0 3px #00ffe1,
+      0 0 6px #00ffe1;
+  }
+}
+
+
 </style>
 </head>
 <body>
@@ -701,7 +768,20 @@ footer p { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 8px; }
   <div class="f-logo">❄️ FrozenMart</div>
   <p>Frozen food modern untuk keluarga Indonesia</p>
   <p style="margin-top:8px">📍 Jakarta | 📞 +62 856-9732-1423 | 📧 frozenmart@email.com</p>
-  <p style="margin-top:16px; font-size:12px; opacity:.4">© 2026 FrozenMart. All rights reserved.</p>
+  
+    <!-- TAMBAHAN DEVELOPER -->
+  <p class="dev-text">
+    website developer by 
+    <a href="https://www.instagram.com/benyoriki?igsh=cGZkOXpuN2JyYjAy" target="_blank">
+      @benyoriki
+    </a>
+  </p>
+
+  <p style="margin-top:16px; font-size:12px; opacity:.4">
+    © 2026 FrozenMart. All rights reserved.
+  </p>
+
+
 </footer>
 
 <!-- ═══════════════════════════════════════════ -->
