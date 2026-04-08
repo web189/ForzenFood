@@ -29,74 +29,1265 @@
 
 <title>FrozenMart 2026 | Frozen Food Praktis & Modern</title>
 
-<!-- Fonts -->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-<!-- CSS -->
-
-<link rel="stylesheet" href="style.css">
-
-<!-- Favicon -->
-
 <link rel="icon" href="favicon.png">
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nikmati frozen food berkualitas tinggi di FrozenMart. Praktis, higienis, dan siap saji.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #FF6B35;
+  --primary-light: #FF8C5A;
+  --primary-dark: #E84F1A;
+  --accent: #00C9A7;
+  --accent-dark: #00A88A;
+  --bg: #FFFDF9;
+  --bg2: #FFF7F0;
+  --bg3: #FFF1E6;
+  --card: #FFFFFF;
+  --text: #1A1209;
+  --text2: #5C4A36;
+  --text3: #9A8070;
+  --border: #F0E8DF;
+  --shadow: 0 4px 24px rgba(255,107,53,0.10);
+  --shadow-hover: 0 8px 40px rgba(255,107,53,0.18);
+  --radius: 18px;
+  --radius-sm: 10px;
+}
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.png">
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 99px; }
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,253,249,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5vw;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--primary);
+  display: flex; align-items: center; gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--text); }
+
+nav { display: flex; align-items: center; gap: 6px; }
+nav a {
+  font-size: 14px; font-weight: 500; color: var(--text2);
+  text-decoration: none; padding: 7px 14px;
+  border-radius: 99px;
+  transition: all .2s;
+}
+nav a:hover { background: var(--bg3); color: var(--primary); }
+
+.cart-btn {
+  position: relative; cursor: pointer;
+  background: var(--primary);
+  color: white; border: none;
+  border-radius: 99px;
+  padding: 8px 18px 8px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 14px;
+  display: flex; align-items: center; gap: 8px;
+  transition: all .2s;
+  box-shadow: 0 2px 12px rgba(255,107,53,0.3);
+}
+.cart-btn:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 18px rgba(255,107,53,0.4); }
+.cart-badge {
+  background: white; color: var(--primary);
+  border-radius: 99px; width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 88vh;
+  background: linear-gradient(135deg, #FFF7F0 0%, #FFE9D8 60%, #FFD4B8 100%);
+  display: flex; align-items: center;
+  padding: 40px 5vw;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; right: -80px; top: -80px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+}
+.hero::after {
+  content: '';
+  position: absolute; left: 30%; bottom: -100px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,201,167,0.10) 0%, transparent 70%);
+}
+
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px; align-items: center;
+  max-width: 1100px; margin: 0 auto; width: 100%;
+  position: relative; z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,107,53,0.1);
+  color: var(--primary);
+  border: 1px solid rgba(255,107,53,0.2);
+  border-radius: 99px;
+  padding: 5px 14px; font-size: 13px; font-weight: 600;
+  margin-bottom: 20px;
+}
+.hero-badge .dot { width: 7px; height: 7px; background: var(--primary); border-radius: 50%; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: clamp(32px, 5vw, 58px);
+  line-height: 1.1; letter-spacing: -1.5px;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+.hero h1 em { color: var(--primary); font-style: normal; }
+.hero p { color: var(--text2); font-size: 17px; line-height: 1.6; margin-bottom: 32px; max-width: 440px; }
+
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--primary); color: white;
+  border: none; border-radius: 99px;
+  padding: 14px 28px; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+  box-shadow: 0 4px 20px rgba(255,107,53,0.35);
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(255,107,53,0.45); }
+
+.btn-outline {
+  background: white; color: var(--primary);
+  border: 1.5px solid var(--primary);
+  border-radius: 99px;
+  padding: 14px 28px; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-outline:hover { background: var(--bg3); transform: translateY(-2px); }
+
+.hero-stats {
+  display: flex; gap: 28px; margin-top: 36px;
+}
+.stat-item { text-align: center; }
+.stat-num { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 24px; color: var(--primary); }
+.stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+.hero-visual {
+  display: flex; justify-content: center; align-items: center;
+  position: relative;
+}
+.hero-img-wrap {
+  width: 340px; height: 340px;
+  background: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 140px;
+  box-shadow: 0 20px 80px rgba(255,107,53,0.15);
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+.floating-tag {
+  position: absolute;
+  background: white; border-radius: var(--radius-sm);
+  padding: 8px 14px; font-size: 13px; font-weight: 600;
+  box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 6px;
+}
+.floating-tag.t1 { top: 30px; right: -10px; color: var(--accent-dark); }
+.floating-tag.t2 { bottom: 60px; left: -20px; color: var(--primary); }
+
+/* ── SECTION TITLE ── */
+.sec-title {
+  text-align: center; margin-bottom: 40px;
+}
+.sec-title h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: clamp(26px, 4vw, 40px);
+  letter-spacing: -0.5px; color: var(--text);
+}
+.sec-title p { color: var(--text2); margin-top: 8px; font-size: 16px; }
+.sec-pill {
+  display: inline-block;
+  background: var(--bg3); color: var(--primary);
+  border-radius: 99px; padding: 4px 14px;
+  font-size: 13px; font-weight: 600; margin-bottom: 10px;
+}
+
+/* ── PRODUK ── */
+.produk-section {
+  padding: 80px 5vw;
+  background: var(--bg);
+}
+
+.produk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1200px; margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  transition: all .25s;
+  position: relative;
+}
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: rgba(255,107,53,0.2); }
+
+.card-img {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--bg3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 72px;
+}
+
+.card-body { padding: 16px 18px 18px; }
+.card-category {
+  font-size: 11px; font-weight: 600;
+  color: var(--primary); background: rgba(255,107,53,0.08);
+  border-radius: 99px; padding: 3px 10px;
+  display: inline-block; margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.card-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 17px; color: var(--text);
+  margin-bottom: 4px;
+}
+.card-desc { font-size: 13px; color: var(--text3); margin-bottom: 12px; line-height: 1.4; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; }
+.card-price { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 19px; color: var(--primary); }
+.card-stock { font-size: 12px; color: var(--text3); }
+.card-stock.low { color: #E84F1A; }
+
+.add-cart-btn {
+  background: var(--primary); color: white;
+  border: none; border-radius: 99px;
+  width: 38px; height: 38px;
+  font-size: 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+  box-shadow: 0 2px 10px rgba(255,107,53,0.3);
+  flex-shrink: 0;
+}
+.add-cart-btn:hover { background: var(--primary-dark); transform: scale(1.1); }
+.add-cart-btn:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; transform: none; }
+
+.stock-badge {
+  position: absolute; top: 12px; right: 12px;
+  background: white; border-radius: 99px; padding: 4px 10px;
+  font-size: 11px; font-weight: 600; color: var(--text2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ── ABOUT ── */
+.about-section {
+  padding: 80px 5vw;
+  background: var(--bg2);
+}
+.about-inner {
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.about-text h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 34px; letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.about-text p { color: var(--text2); line-height: 1.7; margin-bottom: 16px; }
+.about-features { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.feat-item { display: flex; align-items: center; gap: 12px; }
+.feat-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--bg3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.feat-text { font-size: 14px; color: var(--text2); font-weight: 500; }
+
+.about-visual {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.about-card {
+  background: white; border-radius: var(--radius);
+  padding: 20px; text-align: center;
+  border: 1.5px solid var(--border);
+}
+.about-card .num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; color: var(--primary); }
+.about-card .lbl { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.about-card.accent { background: var(--primary); border-color: var(--primary); }
+.about-card.accent .num { color: white; }
+.about-card.accent .lbl { color: rgba(255,255,255,0.75); }
+
+/* ── CTA ── */
+.cta-section {
+  padding: 80px 5vw;
+  background: var(--primary);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '🧊';
+  position: absolute; font-size: 200px; opacity: .06;
+  right: -20px; top: -40px;
+}
+.cta-section h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: clamp(26px,4vw,42px);
+  color: white; margin-bottom: 12px; position: relative;
+}
+.cta-section p { color: rgba(255,255,255,0.8); font-size: 17px; margin-bottom: 28px; position: relative; }
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366; color: white;
+  border: none; border-radius: 99px;
+  padding: 15px 32px; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  text-decoration: none;
+}
+.btn-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text); color: white;
+  padding: 40px 5vw 20px;
+  text-align: center;
+}
+footer .f-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--primary); margin-bottom: 8px; }
+footer p { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 8px; }
+
+/* ── OVERLAY BACKDROP ── */
+.overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(26,18,9,0.55);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.overlay.active { opacity: 1; pointer-events: all; }
+
+/* ── CART PANEL ── */
+.cart-panel {
+  background: white; border-radius: var(--radius);
+  width: 100%; max-width: 460px;
+  max-height: 90vh; display: flex; flex-direction: column;
+  overflow: hidden;
+  transform: translateY(30px); transition: transform .25s;
+}
+.overlay.active .cart-panel { transform: translateY(0); }
+
+.panel-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.panel-header h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; }
+.close-btn {
+  width: 34px; height: 34px; border-radius: 99px;
+  background: var(--bg2); border: none; cursor: pointer;
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+  color: var(--text2); transition: all .15s;
+}
+.close-btn:hover { background: var(--bg3); color: var(--primary); }
+
+.panel-body { flex: 1; overflow-y: auto; padding: 16px 24px; }
+.empty-cart { text-align: center; padding: 40px 0; color: var(--text3); font-size: 15px; }
+.empty-cart .icon { font-size: 48px; margin-bottom: 12px; }
+
+.cart-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.ci-emoji { font-size: 36px; width: 52px; height: 52px; background: var(--bg3); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
+.ci-info { flex: 1; }
+.ci-name { font-weight: 600; font-size: 14px; color: var(--text); }
+.ci-price { font-size: 13px; color: var(--primary); font-weight: 600; margin-top: 2px; }
+.ci-qty {
+  display: flex; align-items: center; gap: 8px;
+}
+.qty-btn {
+  width: 28px; height: 28px; border-radius: 99px;
+  background: var(--bg3); border: none; cursor: pointer;
+  font-size: 16px; font-weight: 700; color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  transition: all .15s;
+}
+.qty-btn:hover { background: var(--primary); color: white; }
+.qty-num { font-weight: 700; font-size: 15px; min-width: 20px; text-align: center; }
+
+.panel-footer {
+  padding: 16px 24px 20px;
+  border-top: 1px solid var(--border);
+}
+.total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.total-label { font-size: 14px; color: var(--text2); }
+.total-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--primary); }
+.checkout-btn {
+  width: 100%; padding: 14px;
+  background: var(--primary); color: white;
+  border: none; border-radius: 99px;
+  font-size: 16px; font-weight: 600; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+  box-shadow: 0 4px 16px rgba(255,107,53,0.3);
+}
+.checkout-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.checkout-btn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; transform: none; }
+
+/* ── CHECKOUT FORM ── */
+.checkout-form { padding: 8px 0; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; padding: 11px 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 14px; font-family: 'DM Sans', sans-serif;
+  color: var(--text); background: var(--bg);
+  transition: border .15s;
+  outline: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); }
+.form-group textarea { resize: vertical; min-height: 72px; }
+
+.order-summary { background: var(--bg2); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px; }
+.os-title { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 10px; }
+.os-item { display: flex; justify-content: space-between; font-size: 13px; color: var(--text2); padding: 4px 0; }
+.os-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 15px; color: var(--text); border-top: 1px solid var(--border); padding-top: 8px; margin-top: 6px; }
+
+/* ── STRUK ── */
+.struk-wrap { padding: 0 0 4px; }
+.struk {
+  background: white; border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  padding: 24px;
+  font-size: 13px;
+}
+.struk-header { text-align: center; margin-bottom: 16px; border-bottom: 2px dashed var(--border); padding-bottom: 14px; }
+.struk-header h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--primary); }
+.struk-header p { color: var(--text3); font-size: 12px; margin-top: 2px; }
+.struk-num { font-size: 11px; background: var(--bg3); color: var(--primary); border-radius: 99px; padding: 3px 10px; display: inline-block; margin-top: 6px; font-weight: 600; }
+
+.struk-section-title { font-weight: 700; font-size: 12px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; margin: 14px 0 8px; }
+.struk-row { display: flex; justify-content: space-between; padding: 3px 0; color: var(--text2); }
+.struk-row.bold { font-weight: 700; color: var(--text); }
+.struk-divider { border: none; border-top: 1px dashed var(--border); margin: 10px 0; }
+.struk-total-box {
+  background: var(--bg3); border-radius: 10px; padding: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 12px 0;
+}
+.struk-total-box .label { font-weight: 600; color: var(--text); }
+.struk-total-box .amount { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--primary); }
+
+.struk-footer { text-align: center; border-top: 2px dashed var(--border); padding-top: 14px; margin-top: 14px; }
+.struk-footer p { color: var(--text3); font-size: 12px; }
+.struk-footer .thanks { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--primary); margin-bottom: 4px; }
+
+.struk-btns {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; margin-top: 16px;
+}
+.struk-btn {
+  padding: 10px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; border: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.struk-btn.close { background: var(--bg2); color: var(--text2); }
+.struk-btn.close:hover { background: var(--bg3); }
+.struk-btn.download { background: var(--bg3); color: var(--primary); }
+.struk-btn.download:hover { background: rgba(255,107,53,0.15); }
+.struk-btn.wa { background: #25D366; color: white; }
+.struk-btn.wa:hover { background: #1ebe5a; }
+
+/* ── ADMIN LOGIN ── */
+.admin-login { padding: 8px 0; }
+.admin-login h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; text-align: center; margin-bottom: 6px; }
+.admin-login .subtitle { text-align: center; font-size: 13px; color: var(--text3); margin-bottom: 24px; }
+.admin-error { background: #FFF0EE; border: 1px solid #FFBDBD; color: #C0392B; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 12px; display: none; }
+
+/* ── ADMIN PANEL ── */
+.admin-panel { padding: 4px 0; }
+.admin-tabs { display: flex; gap: 6px; margin-bottom: 20px; }
+.tab-btn {
+  flex: 1; padding: 9px;
+  border: 1.5px solid var(--border); background: white;
+  border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text2); transition: all .15s;
+}
+.tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+.admin-prod-list { display: flex; flex-direction: column; gap: 10px; }
+.admin-prod-item {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg2); border-radius: var(--radius-sm); padding: 12px;
+}
+.api-emoji { font-size: 32px; width: 48px; height: 48px; background: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.api-info { flex: 1; }
+.api-name { font-weight: 700; font-size: 14px; color: var(--text); }
+.api-detail { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.api-actions { display: flex; gap: 6px; }
+.api-edit, .api-del {
+  padding: 6px 12px; border-radius: 99px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: all .15s;
+}
+.api-edit { background: var(--bg3); color: var(--primary); }
+.api-edit:hover { background: rgba(255,107,53,0.15); }
+.api-del { background: #FFF0EE; color: #C0392B; }
+.api-del:hover { background: #FFD8D5; }
+
+.add-form { background: var(--bg2); border-radius: var(--radius-sm); padding: 16px; }
+.add-form h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--text); color: white;
+  padding: 12px 22px; border-radius: 99px;
+  font-size: 14px; font-weight: 500; z-index: 999;
+  transition: transform .3s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { display: none; }
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-visual { display: none; }
+  .hero-btns { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-visual { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .struk-btns { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- HEADER -->
 <header>
-  <div class="logo">❄️ FrozenMart</div>
+  <div class="logo" id="logoTap">❄️ <span>Frozen</span>Mart</div>
   <nav>
-    <a href="#">Home</a>
+    <a href="#">Beranda</a>
     <a href="#produk">Produk</a>
     <a href="#tentang">Tentang</a>
     <a href="#kontak">Kontak</a>
   </nav>
+  <button class="cart-btn" onclick="openCart()">
+    🛒 Keranjang
+    <span class="cart-badge" id="cartBadge">0</span>
+  </button>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-text">
-    <h1>Frozen Food Modern 2026</h1>
-    <p>Makanan praktis, higienis & siap saji</p>
-    <button onclick="scrollToProduk()">Lihat Produk</button>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span> Produk Terlaris 2026</div>
+      <h1>Frozen Food <em>Modern</em> & Praktis</h1>
+      <p>Makanan higienis, lezat, dan siap saji untuk keluarga modern. Pesan mudah, tiba segar!</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollToProduk()">Lihat Produk</button>
+        <button class="btn-outline" onclick="openWA('')">Order via WA</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Pelanggan</div></div>
+        <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-label">Rating</div></div>
+        <div class="stat-item"><div class="stat-num">24H</div><div class="stat-label">Pengiriman</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">🧊</div>
+      <div class="floating-tag t1">✅ Higienis & Segar</div>
+      <div class="floating-tag t2">🔥 Best Seller</div>
+    </div>
   </div>
 </section>
 
 <!-- PRODUK -->
-<section id="produk" class="produk">
-  <h2>Produk Terlaris 🔥</h2>
-  <div class="produk-list" id="produkList"></div>
+<section id="produk" class="produk-section">
+  <div class="sec-title">
+    <div class="sec-pill">Menu Favorit</div>
+    <h2>Produk Terlaris 🔥</h2>
+    <p>Pilihan frozen food premium dengan kualitas terjaga</p>
+  </div>
+  <div class="produk-grid" id="produkGrid"></div>
 </section>
 
 <!-- TENTANG -->
-<section id="tentang" class="tentang">
-  <h2>Tentang Kami</h2>
-  <p>
-    FrozenMart menyediakan berbagai frozen food berkualitas tinggi,
-    cocok untuk keluarga modern. Praktis, cepat, dan enak!
-  </p>
+<section id="tentang" class="about-section">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="sec-pill">Tentang Kami</div>
+      <h2>Kenapa Pilih FrozenMart?</h2>
+      <p>FrozenMart hadir sebagai solusi makanan praktis berkualitas tinggi untuk keluarga modern Indonesia.</p>
+      <div class="about-features">
+        <div class="feat-item"><div class="feat-icon">🥶</div><div class="feat-text">Dibekukan dengan teknologi modern — segar sampai meja makan</div></div>
+        <div class="feat-item"><div class="feat-icon">🚚</div><div class="feat-text">Pengiriman cepat 24 jam dengan kemasan terjaga</div></div>
+        <div class="feat-item"><div class="feat-icon">✅</div><div class="feat-text">Tersertifikasi BPOM & halal, aman untuk seluruh keluarga</div></div>
+        <div class="feat-item"><div class="feat-icon">💰</div><div class="feat-text">Harga kompetitif dengan kualitas premium</div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-card accent"><div class="num">500+</div><div class="lbl">Pelanggan Puas</div></div>
+      <div class="about-card"><div class="num">30+</div><div class="lbl">Varian Produk</div></div>
+      <div class="about-card"><div class="num">4.9</div><div class="lbl">Rating Bintang</div></div>
+      <div class="about-card"><div class="num">3th</div><div class="lbl">Pengalaman</div></div>
+    </div>
+  </div>
 </section>
 
 <!-- CTA -->
-<section class="cta">
-  <h2>Pesan Sekarang</h2>
-  <button onclick="orderWA()">Order via WhatsApp</button>
+<section class="cta-section">
+  <h2>Siap Memesan Sekarang?</h2>
+  <p>Hubungi kami via WhatsApp dan dapatkan penawaran spesial hari ini!</p>
+  <button class="btn-wa" onclick="openWA('')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.118.554 4.103 1.523 5.828L0 24l6.336-1.501A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.954a9.955 9.955 0 01-5.073-1.388l-.363-.215-3.762.891.936-3.638-.236-.374A9.947 9.947 0 012.046 12C2.046 6.5 6.5 2.046 12 2.046S21.954 6.5 21.954 12 17.5 21.954 12 21.954z"/></svg>
+    Order via WhatsApp
+  </button>
 </section>
 
 <!-- FOOTER -->
 <footer id="kontak">
-  <p>© 2026 FrozenMart</p>
+  <div class="f-logo">❄️ FrozenMart</div>
+  <p>Frozen food modern untuk keluarga Indonesia</p>
+  <p style="margin-top:8px">📍 Jakarta | 📞 +62 856-9732-1423 | 📧 frozenmart@email.com</p>
+  <p style="margin-top:16px; font-size:12px; opacity:.4">© 2026 FrozenMart. All rights reserved.</p>
 </footer>
 
-<script src="app.js"></script>
+<!-- ═══════════════════════════════════════════ -->
+<!-- OVERLAYS -->
+
+<!-- CART -->
+<div class="overlay" id="cartOverlay">
+  <div class="cart-panel" id="cartPanel">
+    <div class="panel-header">
+      <h3>🛒 Keranjang Belanja</h3>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="panel-body" id="cartBody"></div>
+    <div class="panel-footer">
+      <div class="total-row">
+        <span class="total-label">Total Belanja</span>
+        <span class="total-price" id="cartTotal">Rp 0</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn" onclick="goCheckout()">Lanjut ke Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="overlay" id="checkoutOverlay">
+  <div class="cart-panel">
+    <div class="panel-header">
+      <h3>📋 Checkout</h3>
+      <button class="close-btn" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="checkout-form">
+        <div class="order-summary">
+          <div class="os-title">Ringkasan Pesanan</div>
+          <div id="orderSummaryItems"></div>
+          <div class="os-total"><span>Total</span><span id="orderSummaryTotal">Rp 0</span></div>
+        </div>
+        <div class="form-group">
+          <label>Nama Lengkap *</label>
+          <input type="text" id="buyerName" placeholder="Nama Anda">
+        </div>
+        <div class="form-group">
+          <label>No. WhatsApp *</label>
+          <input type="text" id="buyerPhone" placeholder="08xxxxxxxxxx">
+        </div>
+        <div class="form-group">
+          <label>Alamat Pengiriman *</label>
+          <textarea id="buyerAddress" placeholder="Jl. Contoh No.1, Kelurahan, Kota..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Metode Pembayaran</label>
+          <select id="payMethod">
+            <option>Transfer Bank (BCA)</option>
+            <option>Transfer Bank (Mandiri)</option>
+            <option>QRIS</option>
+            <option>Bayar di Tempat (COD)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="checkout-btn" onclick="confirmOrder()">Konfirmasi Pesanan ✅</button>
+    </div>
+  </div>
+</div>
+
+<!-- STRUK -->
+<div class="overlay" id="strukOverlay">
+  <div class="cart-panel">
+    <div class="panel-header">
+      <h3>🧾 Struk Pembelian</h3>
+      <button class="close-btn" onclick="closeStruk()">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="struk-wrap">
+        <div class="struk" id="strukContent">
+          <!-- diisi JS -->
+        </div>
+        <div class="struk-btns">
+          <button class="struk-btn close" onclick="closeStruk()">✕ Tutup</button>
+          <button class="struk-btn download" onclick="downloadStruk()">⬇ Download</button>
+          <button class="struk-btn wa" onclick="kirimWA()">📲 Kirim WA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div class="overlay" id="adminLoginOverlay">
+  <div class="cart-panel" style="max-width:380px">
+    <div class="panel-header">
+      <h3>🔐 Admin FrozenMart</h3>
+      <button class="close-btn" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="admin-login">
+        <p class="subtitle">Masuk sebagai administrator</p>
+        <div class="admin-error" id="adminError">Username atau password salah!</div>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="adminUser" placeholder="admin">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="adminPass" placeholder="••••••••">
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="checkout-btn" onclick="doAdminLogin()">Masuk →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="overlay" id="adminPanelOverlay">
+  <div class="cart-panel" style="max-width:520px">
+    <div class="panel-header">
+      <h3>⚙️ Panel Admin</h3>
+      <button class="close-btn" onclick="logoutAdmin()">Keluar</button>
+    </div>
+    <div class="panel-body">
+      <div class="admin-panel">
+        <div class="admin-tabs">
+          <button class="tab-btn active" id="tabDaftar" onclick="switchTab('daftar')">📦 Daftar Produk</button>
+          <button class="tab-btn" id="tabTambah" onclick="switchTab('tambah')">➕ Tambah Produk</button>
+        </div>
+        <div id="tabContentDaftar">
+          <div class="admin-prod-list" id="adminProdList"></div>
+        </div>
+        <div id="tabContentTambah" style="display:none">
+          <div class="add-form">
+            <h4 id="editFormTitle">Tambah Produk Baru</h4>
+            <div class="form-group">
+              <label>Nama Produk *</label>
+              <input type="text" id="fNama" placeholder="cth: Dimsum Premium">
+            </div>
+            <div class="form-group">
+              <label>Deskripsi</label>
+              <input type="text" id="fDesc" placeholder="cth: Dimsum isi ayam & udang">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Harga (Rp) *</label>
+                <input type="number" id="fHarga" placeholder="25000">
+              </div>
+              <div class="form-group">
+                <label>Stok *</label>
+                <input type="number" id="fStok" placeholder="50">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Emoji / Ikon</label>
+                <input type="text" id="fEmoji" placeholder="🍗">
+              </div>
+              <div class="form-group">
+                <label>Kategori</label>
+                <input type="text" id="fKategori" placeholder="cth: Ayam">
+              </div>
+            </div>
+            <input type="hidden" id="editId" value="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer" id="adminFooter">
+      <button class="checkout-btn" id="adminSaveBtn" onclick="saveProduk()">Simpan Produk ✅</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DATA PRODUK ──
+let produk = [
+  { id:1, nama:"Sosis Ayam Premium", desc:"Sosis gurih dari daging ayam pilihan", harga:25000, stok:48, emoji:"🌭", kategori:"Ayam" },
+  { id:2, nama:"Nugget Spesial", desc:"Nugget crispy anti gagal, cocok anak-anak", harga:30000, stok:35, emoji:"🍗", kategori:"Ayam" },
+  { id:3, nama:"Bakso Sapi Jumbo", desc:"Bakso kenyal ukuran jumbo rasa asli", harga:28000, stok:22, emoji:"🥩", kategori:"Sapi" },
+  { id:4, nama:"Dimsum Udang", desc:"Dimsum premium isi udang segar", harga:35000, stok:15, emoji:"🦐", kategori:"Seafood" },
+  { id:5, nama:"Gyoza Ayam Sayur", desc:"Gyoza lembut isi ayam dan sayuran", harga:32000, stok:30, emoji:"🥟", kategori:"Ayam" },
+  { id:6, nama:"Udang Beku Premium", desc:"Udang segar langsung dari nelayan", harga:45000, stok:18, emoji:"🍤", kategori:"Seafood" },
+];
+
+let keranjang = [];
+let lastOrder = null;
+let idCounter = 7;
+
+// ── ADMIN ──
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'admin123';
+let logoTapCount = 0;
+let logoTapTimer = null;
+
+document.getElementById('logoTap').addEventListener('click', () => {
+  logoTapCount++;
+  clearTimeout(logoTapTimer);
+  logoTapTimer = setTimeout(() => { logoTapCount = 0; }, 1500);
+  if (logoTapCount >= 5) {
+    logoTapCount = 0;
+    openAdminLogin();
+  }
+});
+
+function openAdminLogin() {
+  document.getElementById('adminLoginOverlay').classList.add('active');
+  document.getElementById('adminError').style.display = 'none';
+  document.getElementById('adminUser').value = '';
+  document.getElementById('adminPass').value = '';
+}
+function closeAdmin() {
+  document.getElementById('adminLoginOverlay').classList.remove('active');
+}
+function doAdminLogin() {
+  const u = document.getElementById('adminUser').value.trim();
+  const p = document.getElementById('adminPass').value;
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    closeAdmin();
+    openAdminPanel();
+  } else {
+    document.getElementById('adminError').style.display = 'block';
+  }
+}
+function openAdminPanel() {
+  document.getElementById('adminPanelOverlay').classList.add('active');
+  switchTab('daftar');
+  renderAdminList();
+}
+function logoutAdmin() {
+  document.getElementById('adminPanelOverlay').classList.remove('active');
+  showToast('Logout berhasil');
+}
+function switchTab(tab) {
+  document.getElementById('tabContentDaftar').style.display = tab==='daftar' ? 'block' : 'none';
+  document.getElementById('tabContentTambah').style.display = tab==='tambah' ? 'block' : 'none';
+  document.getElementById('tabDaftar').classList.toggle('active', tab==='daftar');
+  document.getElementById('tabTambah').classList.toggle('active', tab==='tambah');
+  document.getElementById('adminFooter').style.display = tab==='tambah' ? 'block' : 'none';
+  if (tab==='tambah') resetForm();
+}
+function renderAdminList() {
+  const el = document.getElementById('adminProdList');
+  el.innerHTML = produk.map(p => `
+    <div class="admin-prod-item">
+      <div class="api-emoji">${p.emoji}</div>
+      <div class="api-info">
+        <div class="api-name">${p.nama}</div>
+        <div class="api-detail">${formatRp(p.harga)} &bull; Stok: ${p.stok}</div>
+      </div>
+      <div class="api-actions">
+        <button class="api-edit" onclick="editProduk(${p.id})">✏️ Edit</button>
+        <button class="api-del" onclick="hapusProduk(${p.id})">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+function resetForm() {
+  document.getElementById('editId').value = '';
+  document.getElementById('editFormTitle').textContent = 'Tambah Produk Baru';
+  document.getElementById('fNama').value = '';
+  document.getElementById('fDesc').value = '';
+  document.getElementById('fHarga').value = '';
+  document.getElementById('fStok').value = '';
+  document.getElementById('fEmoji').value = '';
+  document.getElementById('fKategori').value = '';
+}
+function editProduk(id) {
+  const p = produk.find(x => x.id === id);
+  if (!p) return;
+  switchTab('tambah');
+  document.getElementById('editId').value = id;
+  document.getElementById('editFormTitle').textContent = 'Edit Produk';
+  document.getElementById('fNama').value = p.nama;
+  document.getElementById('fDesc').value = p.desc;
+  document.getElementById('fHarga').value = p.harga;
+  document.getElementById('fStok').value = p.stok;
+  document.getElementById('fEmoji').value = p.emoji;
+  document.getElementById('fKategori').value = p.kategori;
+}
+function hapusProduk(id) {
+  if (!confirm('Yakin hapus produk ini?')) return;
+  produk = produk.filter(x => x.id !== id);
+  renderProduk();
+  renderAdminList();
+  showToast('Produk berhasil dihapus');
+}
+function saveProduk() {
+  const nama = document.getElementById('fNama').value.trim();
+  const harga = parseInt(document.getElementById('fHarga').value);
+  const stok = parseInt(document.getElementById('fStok').value);
+  if (!nama || isNaN(harga) || isNaN(stok)) { alert('Nama, harga, dan stok wajib diisi!'); return; }
+  const editId = document.getElementById('editId').value;
+  const data = {
+    nama, harga, stok,
+    desc: document.getElementById('fDesc').value.trim() || '-',
+    emoji: document.getElementById('fEmoji').value.trim() || '📦',
+    kategori: document.getElementById('fKategori').value.trim() || 'Umum',
+  };
+  if (editId) {
+    const idx = produk.findIndex(x => x.id == editId);
+    if (idx !== -1) produk[idx] = { ...produk[idx], ...data };
+    showToast('Produk berhasil diperbarui');
+  } else {
+    produk.push({ id: idCounter++, ...data });
+    showToast('Produk berhasil ditambahkan');
+  }
+  renderProduk();
+  renderAdminList();
+  switchTab('daftar');
+}
+
+// ── RENDER PRODUK ──
+function renderProduk() {
+  const grid = document.getElementById('produkGrid');
+  grid.innerHTML = produk.map(p => `
+    <div class="card">
+      <div class="stock-badge">${p.stok} stok</div>
+      <div class="card-img">${p.emoji}</div>
+      <div class="card-body">
+        <div class="card-category">${p.kategori}</div>
+        <div class="card-name">${p.nama}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="card-footer">
+          <div>
+            <div class="card-price">${formatRp(p.harga)}</div>
+            <div class="card-stock ${p.stok <= 10 ? 'low' : ''}">${p.stok <= 0 ? 'Habis' : p.stok <= 10 ? 'Sisa sedikit!' : 'Tersedia'}</div>
+          </div>
+          <button class="add-cart-btn" onclick="addToCart(${p.id})" ${p.stok <= 0 ? 'disabled' : ''} title="Tambah ke keranjang">+</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── KERANJANG ──
+function addToCart(id) {
+  const p = produk.find(x => x.id === id);
+  if (!p || p.stok <= 0) return;
+  const ex = keranjang.find(x => x.id === id);
+  if (ex) {
+    if (ex.qty >= p.stok) { showToast('Stok tidak mencukupi'); return; }
+    ex.qty++;
+  } else {
+    keranjang.push({ id, qty: 1 });
+  }
+  updateCartBadge();
+  showToast(`${p.emoji} ${p.nama} ditambahkan`);
+}
+function removeFromCart(id) {
+  const ex = keranjang.find(x => x.id === id);
+  if (!ex) return;
+  if (ex.qty > 1) ex.qty--;
+  else keranjang = keranjang.filter(x => x.id !== id);
+  updateCartBadge();
+  renderCartBody();
+}
+function addQty(id) {
+  const p = produk.find(x => x.id === id);
+  const ex = keranjang.find(x => x.id === id);
+  if (!p || !ex) return;
+  if (ex.qty >= p.stok) { showToast('Stok tidak mencukupi'); return; }
+  ex.qty++;
+  renderCartBody();
+  updateCartBadge();
+}
+function updateCartBadge() {
+  const total = keranjang.reduce((s, x) => s + x.qty, 0);
+  document.getElementById('cartBadge').textContent = total;
+}
+function cartTotal() {
+  return keranjang.reduce((s, x) => {
+    const p = produk.find(pr => pr.id === x.id);
+    return s + (p ? p.harga * x.qty : 0);
+  }, 0);
+}
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('active');
+  renderCartBody();
+}
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('active');
+}
+function renderCartBody() {
+  const body = document.getElementById('cartBody');
+  if (keranjang.length === 0) {
+    body.innerHTML = '<div class="empty-cart"><div class="icon">🛒</div><p>Keranjang masih kosong</p></div>';
+    document.getElementById('cartTotal').textContent = 'Rp 0';
+    document.getElementById('checkoutBtn').disabled = true;
+    return;
+  }
+  document.getElementById('checkoutBtn').disabled = false;
+  body.innerHTML = keranjang.map(x => {
+    const p = produk.find(pr => pr.id === x.id);
+    if (!p) return '';
+    return `
+      <div class="cart-item">
+        <div class="ci-emoji">${p.emoji}</div>
+        <div class="ci-info">
+          <div class="ci-name">${p.nama}</div>
+          <div class="ci-price">${formatRp(p.harga * x.qty)}</div>
+        </div>
+        <div class="ci-qty">
+          <button class="qty-btn" onclick="removeFromCart(${p.id})">−</button>
+          <span class="qty-num">${x.qty}</span>
+          <button class="qty-btn" onclick="addQty(${p.id})">+</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('cartTotal').textContent = formatRp(cartTotal());
+}
+
+// ── CHECKOUT ──
+function goCheckout() {
+  closeCart();
+  const items = document.getElementById('orderSummaryItems');
+  items.innerHTML = keranjang.map(x => {
+    const p = produk.find(pr => pr.id === x.id);
+    if (!p) return '';
+    return `<div class="os-item"><span>${p.emoji} ${p.nama} x${x.qty}</span><span>${formatRp(p.harga * x.qty)}</span></div>`;
+  }).join('');
+  document.getElementById('orderSummaryTotal').textContent = formatRp(cartTotal());
+  document.getElementById('checkoutOverlay').classList.add('active');
+}
+function closeCheckout() {
+  document.getElementById('checkoutOverlay').classList.remove('active');
+}
+function confirmOrder() {
+  const nama = document.getElementById('buyerName').value.trim();
+  const phone = document.getElementById('buyerPhone').value.trim();
+  const address = document.getElementById('buyerAddress').value.trim();
+  const pay = document.getElementById('payMethod').value;
+  if (!nama || !phone || !address) { alert('Nama, nomor WA, dan alamat wajib diisi!'); return; }
+
+  // Kurangi stok
+  keranjang.forEach(x => {
+    const p = produk.find(pr => pr.id === x.id);
+    if (p) p.stok = Math.max(0, p.stok - x.qty);
+  });
+  renderProduk();
+
+  const now = new Date();
+  const orderNum = 'FM' + now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '-' + String(Math.floor(Math.random()*9000)+1000);
+  lastOrder = {
+    num: orderNum,
+    nama, phone, address, pay,
+    items: [...keranjang.map(x => {
+      const p = produk.find(pr => pr.id === x.id);
+      return { nama: p.nama, emoji: p.emoji, harga: p.harga, qty: x.qty };
+    })],
+    total: cartTotal(),
+    date: now.toLocaleString('id-ID'),
+  };
+
+  keranjang = [];
+  updateCartBadge();
+  closeCheckout();
+  showStruk();
+}
+
+// ── STRUK ──
+function showStruk() {
+  const o = lastOrder;
+  const itemsHtml = o.items.map(x =>
+    `<div class="struk-row"><span>${x.emoji} ${x.nama} x${x.qty}</span><span>${formatRp(x.harga * x.qty)}</span></div>`
+  ).join('');
+  document.getElementById('strukContent').innerHTML = `
+    <div class="struk-header">
+      <h3>❄️ FrozenMart</h3>
+      <p>Frozen Food Modern & Praktis</p>
+      <div class="struk-num"># ${o.num}</div>
+    </div>
+    <div class="struk-section-title">Data Pembeli</div>
+    <div class="struk-row"><span>Nama</span><span>${o.nama}</span></div>
+    <div class="struk-row"><span>WhatsApp</span><span>${o.phone}</span></div>
+    <div class="struk-row"><span>Alamat</span><span style="max-width:55%;text-align:right">${o.address}</span></div>
+    <div class="struk-row"><span>Pembayaran</span><span>${o.pay}</span></div>
+    <div class="struk-row"><span>Tanggal</span><span>${o.date}</span></div>
+    <hr class="struk-divider">
+    <div class="struk-section-title">Rincian Produk</div>
+    ${itemsHtml}
+    <div class="struk-total-box">
+      <span class="label">Total Pembayaran</span>
+      <span class="amount">${formatRp(o.total)}</span>
+    </div>
+    <div class="struk-footer">
+      <div class="thanks">Terima Kasih! 🙏</div>
+      <p>Pesanan Anda sedang diproses.</p>
+      <p>Barang akan dikirim dalam 24 jam.</p>
+    </div>
+  `;
+  document.getElementById('strukOverlay').classList.add('active');
+}
+function closeStruk() {
+  document.getElementById('strukOverlay').classList.remove('active');
+}
+function downloadStruk() {
+  const o = lastOrder;
+  let txt = `
+=========================================
+          ❄️  FROZENMART 2026  ❄️
+         Frozen Food Modern & Praktis
+=========================================
+No. Order : ${o.num}
+Tanggal   : ${o.date}
+-----------------------------------------
+DATA PEMBELI
+Nama      : ${o.nama}
+WhatsApp  : ${o.phone}
+Alamat    : ${o.address}
+Pembayaran: ${o.pay}
+-----------------------------------------
+RINCIAN PESANAN
+${o.items.map(x => `${x.emoji} ${x.nama} x${x.qty}`.padEnd(28) + formatRp(x.harga * x.qty)).join('\n')}
+-----------------------------------------
+TOTAL     : ${formatRp(o.total)}
+=========================================
+   Terima kasih telah berbelanja! 🙏
+ Pesanan akan dikirim dalam 24 jam.
+=========================================
+  `.trim();
+  const blob = new Blob([txt], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `Struk-FrozenMart-${o.num}.txt`;
+  a.click();
+  showToast('Struk berhasil didownload');
+}
+function kirimWA() {
+  const o = lastOrder;
+  const msg = encodeURIComponent(
+`🧾 *STRUK BELANJA FROZENMART*
+━━━━━━━━━━━━━━━━━━━━━━━━━
+*No. Order:* ${o.num}
+*Tanggal:* ${o.date}
+
+👤 *Data Pembeli*
+Nama: ${o.nama}
+WhatsApp: ${o.phone}
+Alamat: ${o.address}
+Pembayaran: ${o.pay}
+
+🛒 *Pesanan*
+${o.items.map(x => `• ${x.emoji} ${x.nama} x${x.qty} = ${formatRp(x.harga * x.qty)}`).join('\n')}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+💰 *TOTAL: ${formatRp(o.total)}*
+━━━━━━━━━━━━━━━━━━━━━━━━━
+Mohon konfirmasi pesanan saya. Terima kasih! 🙏`
+  );
+  window.open(`https://web.whatsapp.com/send?phone=6285697321423&text=${msg}`, '_blank');
+}
+function openWA(msg) {
+  const m = msg || encodeURIComponent('Halo FrozenMart! Saya ingin memesan produk.');
+  window.open(`https://web.whatsapp.com/send?phone=6285697321423&text=${m}`, '_blank');
+}
+
+// ── UTILS ──
+function formatRp(n) {
+  return 'Rp ' + n.toLocaleString('id-ID');
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+function scrollToProduk() {
+  document.getElementById('produk').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Close overlay on backdrop click
+['cartOverlay','checkoutOverlay','strukOverlay','adminLoginOverlay','adminPanelOverlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('active');
+  });
+});
+
+// Admin: Enter key login
+document.getElementById('adminPass').addEventListener('keydown', e => { if (e.key === 'Enter') doAdminLogin(); });
+
+// Init
+renderProduk();
+</script>
 </body>
 </html>
